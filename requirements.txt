@@ -1,0 +1,50 @@
+# 核心框架
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# Web框架
+streamlit==1.28.2
+
+# 文档处理
+langchain==0.0.350
+langchain-community==0.0.10
+langchain-openai==0.0.2
+langchain-core==0.1.3
+
+# 向量数据库
+chromadb==0.4.18
+
+# 文档加载器
+pypdf==3.17.1
+docx2txt==0.8
+python-multipart==0.0.6
+
+# 嵌入模型
+sentence-transformers==2.2.2
+torch==2.1.1
+transformers==4.36.0
+
+# 重排序
+cross-encoder==0.1.0
+
+# BM25检索
+rank-bm25==0.2.2
+
+# LLM
+openai==1.3.7
+ollama==0.1.4
+
+# 配置管理
+pyyaml==6.0.1
+watchdog==3.0.0
+
+# 测试
+pytest==7.4.3
+pytest-asyncio==0.23.2
+
+# 其他
+python-dotenv==1.0.0
+requests==2.31.0
+aiofiles==23.2.1
