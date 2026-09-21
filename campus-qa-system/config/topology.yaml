@@ -1,0 +1,44 @@
+# 课设系统节点拓扑
+# 约定：一组业务 = 一个可独立部署的节点
+# plugins 每项: entry = "package.module:PluginClass"，config 传给 initialize()
+
+nodes:
+  # ── 基座示例节点（验证插件加载 + RPC）──
+  echo_node:
+    group: framework
+    host: 127.0.0.1
+    port: 8200
+    plugins:
+      echo:
+        entry: examples.echo_plugin:EchoPlugin
+        config:
+          greeting: "pong"
+
+  # ── 业务节点占位（后续填 plugins.entry）──
+  file_mgmt_node:
+    group: file_mgmt
+    host: 127.0.0.1
+    port: 8101
+    data_dir: data/file_mgmt
+    plugins: {}
+
+  vector_db_node:
+    group: vector_db
+    host: 127.0.0.1
+    port: 8102
+    data_dir: data/vector_db
+    plugins: {}
+
+  kg_node:
+    group: kg
+    host: 127.0.0.1
+    port: 8103
+    data_dir: data/kg
+    plugins: {}
+
+  qa_node:
+    group: qa
+    host: 127.0.0.1
+    port: 8104
+    data_dir: data/qa
+    plugins: {}

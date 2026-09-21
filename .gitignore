@@ -97,4 +97,5 @@ htmlcov/
 chroma_db/
 
 # Streamlit
-.streamlit/
+.streamlit/node_modules/
+campus-qa-system/data/

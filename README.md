@@ -1,6 +1,25 @@
-# RAG QA Demo
+# RAG + KG 高校智能问答（课设）
 
-基于RAG的智能问答系统演示（课设项目）
+基于 RAG 与知识图谱融合的高校智能问答系统 — **课程设计仓库**。
+
+## 本次交付：插件化分布式基座
+
+正式开发入口见 **[`campus-qa-system/`](campus-qa-system/)**：
+
+- 插件契约 / 注册表 / 配置驱动加载
+- 跨节点 JSON-RPC + 远程插件代理
+- 四组业务拓扑占位：文件管理 / 向量库 / 知识图谱 / 知识问答
+- 交接文档：[`campus-qa-system/docs/交接文档.md`](campus-qa-system/docs/交接文档.md)
+
+```bash
+cd campus-qa-system
+pip install -r requirements.txt
+python smoke_base.py
+python -m base.node --node echo_node
+python smoke_base.py --rpc
+```
+
+历史 demo 相关 Docker / 脚本仍保留在仓库根目录，供对照，不作为课设主入口。
 
 ## 项目简介
 
