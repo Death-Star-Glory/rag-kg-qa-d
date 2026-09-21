@@ -1,9 +1,8 @@
 # 课设系统节点拓扑
-# 约定：一组业务 = 一个可独立部署的节点
-# plugins 每项: entry = "package.module:PluginClass"，config 传给 initialize()
+# plugins.entry = "package.module:PluginClass"
+# 演示网关见 gateway/（单进程装配）；下表用于多进程 RPC 扩展
 
 nodes:
-  # ── 基座示例节点（验证插件加载 + RPC）──
   echo_node:
     group: framework
     host: 127.0.0.1
@@ -14,31 +13,58 @@ nodes:
         config:
           greeting: "pong"
 
-  # ── 业务节点占位（后续填 plugins.entry）──
+  gateway_node:
+    group: gateway
+    host: 127.0.0.1
+    port: 8300
+    data_dir: data/demo
+    plugins:
+      # 演示模式由 gateway.app.build_demo_registry 直接装配
+      # 分布式模式可在各业务节点用 entry 加载同名插件
+      note:
+        entry: examples.echo_plugin:EchoPlugin
+        config:
+          greeting: "gateway"
+
   file_mgmt_node:
     group: file_mgmt
     host: 127.0.0.1
     port: 8101
     data_dir: data/file_mgmt
-    plugins: {}
-
-  vector_db_node:
-    group: vector_db
-    host: 127.0.0.1
-    port: 8102
-    data_dir: data/vector_db
-    plugins: {}
+    plugins:
+      file_store:
+        entry: plugins.file_mgmt.file_store:FileStorePlugin
+        config: {}
+      doc_parser:
+        entry: plugins.file_mgmt.doc_parser:DocParserPlugin
+        config:
+          chunk_size: 160
+          chunk_overlap: 24
 
   kg_node:
     group: kg
     host: 127.0.0.1
     port: 8103
     data_dir: data/kg
-    plugins: {}
+    plugins:
+      kg_builder:
+        entry: plugins.kg.kg_builder:KgBuilderPlugin
+        config: {}
+      kg_query:
+        entry: plugins.kg.kg_query:KgQueryPlugin
+        config:
+          max_nodes: 50
 
   qa_node:
     group: qa
     host: 127.0.0.1
     port: 8104
     data_dir: data/qa
-    plugins: {}
+    plugins:
+      rag_retriever:
+        entry: plugins.qa.retriever:RagRetrieverPlugin
+        config: {}
+      fusion_qa:
+        entry: plugins.qa.fusion:FusionQaPlugin
+        config:
+          top_k: 3
