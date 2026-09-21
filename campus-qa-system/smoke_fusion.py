@@ -1,4 +1,4 @@
-﻿"""铻嶅悎閾捐矾鍐掔儫锛氭枃妗?鈫?寤哄浘 鈫?RAG+KG 闂瓟銆?""
+"""融合链路冒烟：文档 → 建图 → RAG+KG 问答。"""
 
 from __future__ import annotations
 
@@ -16,7 +16,9 @@ def main() -> None:
     data_dir = ROOT / "data" / "smoke_demo"
     if data_dir.exists():
         shutil.rmtree(data_dir)
-    sample = ROOT / "data" / "sample_docs" / "cs_curriculum.txt"
+    sample = ROOT / "samples" / "cs_curriculum.txt"
+    if not sample.exists():
+        sample = ROOT / "data" / "sample_docs" / "cs_curriculum.txt"
     text = sample.read_text(encoding="utf-8")
 
     reg = build_demo_registry(data_dir)
@@ -38,25 +40,31 @@ def main() -> None:
     print("\n== rag index ==")
     print(retriever.call("index_files", {}))
 
-    print("\n== kg subgraph 鎿嶄綔绯荤粺 ==")
-    sg = kg_query.call("subgraph", {"entity": "鎿嶄綔绯荤粺", "depth": 1})
-    print({"found": sg["found"], "center": sg.get("center_label"), "nodes": len(sg["nodes"]), "links": len(sg["links"])})
+    print("\n== kg subgraph 操作系统 ==")
+    sg = kg_query.call("subgraph", {"entity": "操作系统", "depth": 1})
+    print(
+        {
+            "found": sg["found"],
+            "center": sg.get("center_label"),
+            "nodes": len(sg["nodes"]),
+            "links": len(sg["links"]),
+        }
+    )
     assert sg["found"] is True
     assert len(sg["links"]) >= 1
 
     print("\n== fusion ask ==")
-    q = "鎿嶄綔绯荤粺鐨勫厛淇鏄粈涔堬紵灞炰簬鍝釜涓撲笟锛?
+    q = "操作系统的先修课是什么？属于哪个专业？"
     result = fusion.call("ask", {"question": q, "top_k": 3})
     print(result["answer"])
     print("entities:", result["entities"])
     print("triples:", len(result["kg"]["triples"]), "hits:", len(result["rag_hits"]))
     print("confidence:", result["confidence"])
     assert result["rag_hits"] or result["kg"]["triples"]
-    assert "鏉ユ簮" in result["answer"] or "鏂囨。" in result["answer"] or "鍥捐氨" in result["answer"]
+    assert "来源" in result["answer"] or "文档" in result["answer"] or "图谱" in result["answer"]
 
-    print("\nRAG+KG 铻嶅悎鍐掔儫閫氳繃")
+    print("\nRAG+KG 融合冒烟通过")
 
 
 if __name__ == "__main__":
     main()
-
