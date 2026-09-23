@@ -82,7 +82,7 @@ campus-qa-system/
 ├── docs/vector_db交接文档.md        # vector_db 详细交接 —— 接这个模块先读这份
 ├── docs/vector_db设计文档.md        # 设计取舍与已知限制
 ├── docs/待组内确认事项.md            # 已定 / 未定事项；含启动依赖与回退速览
-├── docs/接手提示词.md                # 把验收交给自己的 AI Agent 时，整段复制这份
+├── docs/接手提示词.md                # 让组员的 AI Agent 先了解现状、再回来问「做哪个板块」
 └── smoke_*.py
 ```
 
