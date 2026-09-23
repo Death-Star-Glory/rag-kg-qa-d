@@ -782,3 +782,29 @@ vector_db 组，第 10 节写明「越界代码在评审时打回」。
 模糊题口径定为三态。
 
 **提醒**：向量索引是内存态，节点重启即丢；demo 每次建图时重建。
+
+---
+
+## 10. 出问题怎么退回去
+
+本模块的交付**全部在 `vector-db` 分支**（`4d9991a`），`main` 仍是基线 `11c043f`，**未动**。
+所以最坏情况下「不 merge」就等于没上线。
+
+**完整回退方案（含 6 种场景、3 个本机环境坑、回退后验证命令）见
+`docs/交接文档.md` 第 12 节**，已逐条实测。这里只放与本模块直接相关的两条：
+
+| 想退掉什么 | 命令 |
+|---|---|
+| 只退 `plugins/qa/retriever.py`（薄封装改回原实现） | `git checkout 11c043f -- campus-qa-system/plugins/qa/retriever.py` |
+| 只退 `plugins/file_mgmt/doc_parser.py`（分块改动） | `git checkout 11c043f -- campus-qa-system/plugins/file_mgmt/doc_parser.py` |
+
+⚠️ 上面两条命令**会连暂存区一起改**，之后想复原必须用：
+
+```bash
+git restore --source=HEAD --staged --worktree <文件路径>
+```
+
+单用 `git restore <文件>` **无效**（实测过，见交接文档 12.2 坑 2）。
+
+**如果只是想让 `qa_node` 恢复独立启动**，不用回退任何代码 ——
+把 `topology.yaml` 里 `rag_retriever.config.vector_store_url` 那一行注释掉即可（第 5 节改动 4）。
