@@ -78,9 +78,10 @@ campus-qa-system/
 ├── gateway/app.py        # REST 对接层
 ├── config/topology.yaml
 ├── data/sample_docs/     # 样例教务文档
-├── docs/交接文档.md
-├── docs/vector_db设计文档.md
-├── docs/vector_db交接文档.md
+├── docs/交接文档.md                # 总交接；§11 vector_db 速览（含 §11.8 接手路线）；§12 回退方案
+├── docs/vector_db交接文档.md        # vector_db 详细交接 —— 接这个模块先读这份
+├── docs/vector_db设计文档.md        # 设计取舍与已知限制
+├── docs/待组内确认事项.md            # 已定 / 未定事项；含启动依赖与回退速览
 └── smoke_*.py
 ```
 
