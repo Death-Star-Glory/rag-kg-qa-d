@@ -1,0 +1,77 @@
+{
+  "split": "heading",
+  "n": 40,
+  "n_judged": 39,
+  "clarify_pending": 1,
+  "recommend": {
+    "tau": 0.185,
+    "oov_max": null,
+    "note": "主推仅分数阈值；OOV 作辅助信号，不建议设硬门槛"
+  },
+  "score_only": {
+    "tau": 0.185,
+    "correct": 35,
+    "miss": 0,
+    "false_answer": 4,
+    "judged": 39,
+    "accuracy": 0.8974358974358975,
+    "accuracy_strict": 0.875,
+    "oos_refuse_rate": 1.0,
+    "adv_refuse_rate": 0.0
+  },
+  "two_factor": {
+    "tau": 0.17,
+    "oov_max": 0.35,
+    "correct": 35,
+    "miss": 0,
+    "false_answer": 4
+  },
+  "distribution": {
+    "in_min": 0.2082,
+    "oos_max": 0.1608,
+    "adv_max": 0.4516
+  },
+  "failures": [
+    {
+      "id": "q33",
+      "type": "adversarial",
+      "kind": "该拒未拒",
+      "top1": 0.4516,
+      "oov": 0.1905,
+      "question": "进程控制块 PCB 在 Linux 内核源码中对应哪个结构体？"
+    },
+    {
+      "id": "q34",
+      "type": "adversarial",
+      "kind": "该拒未拒",
+      "top1": 0.3215,
+      "oov": 0.1111,
+      "question": "时间片轮转算法中时间片通常设置为多少毫秒？"
+    },
+    {
+      "id": "q35",
+      "type": "adversarial",
+      "kind": "该拒未拒",
+      "top1": 0.2529,
+      "oov": 0.1818,
+      "question": "银行家算法的具体计算步骤是什么？"
+    },
+    {
+      "id": "q36",
+      "type": "adversarial",
+      "kind": "该拒未拒",
+      "top1": 0.2475,
+      "oov": 0.0625,
+      "question": "分页系统中页面大小通常设置为多少 KB？"
+    }
+  ],
+  "clarify_items": [
+    {
+      "id": "q38",
+      "type": "vague",
+      "top1": 0.2483,
+      "oov": 0.25,
+      "question": "操作系统是怎么管理这些东西的？"
+    }
+  ]
+}

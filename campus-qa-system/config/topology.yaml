@@ -41,6 +41,25 @@ nodes:
           chunk_size: 160
           chunk_overlap: 24
 
+  vector_db_node:
+    group: vector_db
+    host: 127.0.0.1
+    port: 8102
+    data_dir: data/vector_db
+    plugins:
+      embedder:
+        entry: plugins.vector_db.embedder:EmbedderPlugin
+        config:
+          dim: 4096
+      vector_store:
+        entry: plugins.vector_db.vector_store:VectorStorePlugin
+        config:
+          dim: 4096
+          # 打分权重：cosine 主导，keyword_coverage 作为与余弦正交的补充信号。
+          # 调整任一权重后，编排层的拒答阈值必须重新标定（见 score_scale()）。
+          w_cos: 0.75
+          w_cov: 0.25
+
   kg_node:
     group: kg
     host: 127.0.0.1
@@ -63,7 +82,16 @@ nodes:
     plugins:
       rag_retriever:
         entry: plugins.qa.retriever:RagRetrieverPlugin
-        config: {}
+        config:
+          # 方案 C 薄封装：检索逻辑归位到 vector_db_node(8102)，
+          # 本插件只做转发，对外接口不变。
+          #
+          # ⚠️ 配了下面的 url 后，qa_node 启动时会先调 8102 的 vector_store.info：
+          #    未启动 vector_db_node 时 initialize 抛异常 → qa_node 直接启动失败。
+          #    启动顺序：vector_db_node 先起，再起 qa_node。
+          #    需要 qa_node 独立启动（不带向量库）时，把下面这行注释掉即可 ——
+          #    此时自动创建本地 vector_store 实例（单进程 demo 用）。
+          vector_store_url: "http://127.0.0.1:8102"
       fusion_qa:
         entry: plugins.qa.fusion:FusionQaPlugin
         config:
