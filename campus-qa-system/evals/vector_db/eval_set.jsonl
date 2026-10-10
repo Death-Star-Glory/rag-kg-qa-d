@@ -1,0 +1,40 @@
+{"id": "q01", "question": "什么是进程？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["1.1"], "must_terms": ["资源分配", "执行过程"], "note": "定义题，1.1 节首句"}
+{"id": "q02", "question": "进程和程序有什么区别？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["1.3"], "must_terms": ["静态", "动态"], "note": "对比题，1.3 节四点"}
+{"id": "q03", "question": "进程有哪三种基本状态？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["1.2"], "must_terms": ["就绪", "阻塞"], "note": "列举题，1.2 节"}
+{"id": "q04", "question": "进程控制块 PCB 中包含哪些内容？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["1.4"], "must_terms": ["标识符", "优先级"], "note": "列举题，7 项组成"}
+{"id": "q05", "question": "线程和进程有什么区别？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["1.5"], "must_terms": ["调度", "资源分配"], "note": "对比题，与 1.3 有词面重叠，检验能否区分 1.3/1.5"}
+{"id": "q06", "question": "为什么线程切换的开销小于进程切换？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["1.5"], "must_terms": ["地址空间"], "note": "因果题"}
+{"id": "q07", "question": "进程调度有哪些常见算法？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["1.6"], "must_terms": ["先来先服务", "时间片"], "note": "列举题，四种算法"}
+{"id": "q08", "question": "短作业优先调度有什么缺点？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["1.6"], "must_terms": ["饥饿"], "note": "缺点题"}
+{"id": "q09", "question": "同步机制需要满足哪四条准则？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["1.7"], "must_terms": ["空闲让进", "让权等待"], "note": "列举题"}
+{"id": "q10", "question": "产生死锁的四个必要条件是什么？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["1.8"], "must_terms": ["互斥", "循环等待"], "note": "列举题"}
+{"id": "q11", "question": "处理死锁有哪几类策略？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["1.8"], "must_terms": ["预防", "银行家"], "note": "列举题，与 q35 配对：问名称可答，问步骤应拒"}
+{"id": "q12", "question": "内存管理的主要功能有哪些？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["2.1"], "must_terms": ["分配", "保护"], "note": "列举题，2.1 节首句"}
+{"id": "q13", "question": "静态重定位和动态重定位有什么区别？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["2.1"], "must_terms": ["装入", "执行"], "note": "对比题，同章节"}
+{"id": "q14", "question": "动态分区分配会产生什么问题？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["2.2"], "must_terms": ["外部碎片"], "note": "缺点题，与固定分区的内部碎片对照"}
+{"id": "q15", "question": "分页存储管理中逻辑地址如何转换为物理地址？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["2.3"], "must_terms": ["页号", "偏移"], "note": "机理题，与 q36 配对：问机理可答，问页大小数值应拒"}
+{"id": "q16", "question": "快表 TLB 的作用是什么？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["2.3"], "must_terms": ["页表", "访存"], "note": "因果题"}
+{"id": "q17", "question": "分段和分页有什么区别？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["2.4"], "must_terms": ["逻辑", "段表"], "note": "对比题，跨 2.3/2.4 两节，检验能否区分"}
+{"id": "q18", "question": "常见的页面置换算法有哪些？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["2.5"], "must_terms": ["最佳置换", "先进先出"], "note": "列举题，四种算法"}
+{"id": "q19", "question": "什么是抖动？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["2.6"], "must_terms": ["缺页"], "note": "定义题"}
+{"id": "q20", "question": "文件的物理结构有哪几种？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["3.2"], "must_terms": ["连续分配", "链接分配"], "note": "列举题，三种结构"}
+{"id": "q21", "question": "索引分配有什么优点？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["3.2"], "must_terms": ["随机访问"], "note": "优点题，同章节内对比三种分配方式"}
+{"id": "q22", "question": "目录的作用是什么？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["3.3"], "must_terms": ["按名存取"], "note": "定义题"}
+{"id": "q23", "question": "索引节点 inode 中存放什么？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["3.4"], "must_terms": ["权限", "链接计数"], "note": "列举题"}
+{"id": "q24", "question": "外存空闲空间有哪几种管理方法？", "type": "in_scope", "in_library": true, "expected": "answer", "expect_chunk": ["3.5"], "must_terms": ["空闲表", "位示图"], "note": "列举题，四种方法"}
+{"id": "q25", "question": "明天广州的天气怎么样？", "type": "out_of_scope", "in_library": false, "expected": "refuse", "expect_chunk": [], "must_terms": [], "note": "完全无关，无字面重叠"}
+{"id": "q26", "question": "帮我写一段 Python 快速排序代码。", "type": "out_of_scope", "in_library": false, "expected": "refuse", "expect_chunk": [], "must_terms": [], "note": "完全无关"}
+{"id": "q27", "question": "我们学校食堂几点开门？", "type": "out_of_scope", "in_library": false, "expected": "refuse", "expect_chunk": [], "must_terms": [], "note": "完全无关"}
+{"id": "q28", "question": "请推荐几本好看的小说。", "type": "out_of_scope", "in_library": false, "expected": "refuse", "expect_chunk": [], "must_terms": [], "note": "完全无关"}
+{"id": "q29", "question": "2026 年世界杯冠军是哪支球队？", "type": "out_of_scope", "in_library": false, "expected": "refuse", "expect_chunk": [], "must_terms": [], "note": "完全无关"}
+{"id": "q30", "question": "帮我订一张下周三去北京的机票。", "type": "out_of_scope", "in_library": false, "expected": "refuse", "expect_chunk": [], "must_terms": [], "note": "完全无关"}
+{"id": "q31", "question": "怎样用 Excel 做数据透视表？", "type": "out_of_scope", "in_library": false, "expected": "refuse", "expect_chunk": [], "must_terms": [], "note": "完全无关，办公软件操作"}
+{"id": "q32", "question": "从广州到北京的高铁要坐多久？", "type": "out_of_scope", "in_library": false, "expected": "refuse", "expect_chunk": [], "must_terms": [], "note": "完全无关"}
+{"id": "q33", "question": "进程控制块 PCB 在 Linux 内核源码中对应哪个结构体？", "type": "adversarial", "in_library": false, "expected": "refuse", "expect_chunk": [], "must_terms": [], "note": "诱导：与 1.4 字面高度重叠，但语料未涉及任何具体内核实现。字面向量最容易在这里失守"}
+{"id": "q34", "question": "时间片轮转算法中时间片通常设置为多少毫秒？", "type": "adversarial", "in_library": false, "expected": "refuse", "expect_chunk": [], "must_terms": [], "note": "诱导：与 1.6 重叠，语料只说分配固定时间片，未给数值"}
+{"id": "q35", "question": "银行家算法的具体计算步骤是什么？", "type": "adversarial", "in_library": false, "expected": "refuse", "expect_chunk": [], "must_terms": [], "note": "诱导：1.8 只提到算法名称，未展开步骤"}
+{"id": "q36", "question": "分页系统中页面大小通常设置为多少 KB？", "type": "adversarial", "in_library": false, "expected": "refuse", "expect_chunk": [], "must_terms": [], "note": "诱导：2.3 只说划分为大小相等的页框，未给具体数值。新增，检验诱导题不止出现在第 1 章"}
+{"id": "q37", "question": "讲讲进程。", "type": "vague", "in_library": true, "expected": "answer", "expect_chunk": ["1.1", "1.2", "1.3"], "must_terms": ["进程"], "note": "口语化宽泛问句，但指向明确，应正常作答"}
+{"id": "q38", "question": "操作系统是怎么管理这些东西的？", "type": "vague", "in_library": false, "expected": "clarify_ok", "expect_chunk": [], "must_terms": [], "note": "指示代词无先行词，无法判断指向。口径已定：**应澄清**（追问「你指哪一部分」），不是拒答 —— 因为分数 0.248 高于 q39 的 0.208，纯阈值无法区分，抬 τ 只会误伤 q17。详见 docs/vector_db交接文档.md 第 3.5 节"}
+{"id": "q39", "question": "调度相关的东西。", "type": "vague", "in_library": true, "expected": "answer", "expect_chunk": ["1.6"], "must_terms": ["调度"], "note": "残缺问句但指向可判断，应作答"}
+{"id": "q40", "question": "内存那一块。", "type": "vague", "in_library": true, "expected": "answer", "expect_chunk": ["2.1", "2.2", "2.3", "2.4", "2.5", "2.6"], "must_terms": ["内存"], "note": "残缺问句指向第 2 章，应作答。新增，检验跨章模糊问句"}
