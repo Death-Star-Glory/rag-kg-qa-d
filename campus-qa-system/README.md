@@ -7,7 +7,7 @@
 | 文件管理 | `file_mgmt` | 原文存储、解析拆解 |
 | 向量数据库 | `vector_db` | 向量化、入库与相似检索（**已落地**，见 [docs/vector_db交接文档.md](docs/vector_db交接文档.md)） |
 | 知识图谱 | `kg` | 实体关系构建与子图查询 |
-| 知识问答 | `qa` | RAG 检索 + KG 融合问答 |
+| 知识问答 | `qa` | 三态问答（作答/澄清/拒答）+ 生成 + 溯源（**已落地**，见 [docs/qa交接文档.md](docs/qa交接文档.md)） |
 
 ## 快速开始
 
@@ -27,6 +27,13 @@ python smoke_api.py
 # 向量库（零第三方依赖）
 python smoke_vector_db.py
 python smoke_rpc_vector_db.py
+
+# qa 模块（三态判定 / 生成 / 溯源，零第三方依赖）
+python smoke_qa.py
+
+# 项目一评测（40 题：准确率 / 拒答率 / 幻觉统计）
+python evals/project1/run_eval.py
+python evals/project1/eval_stats.py
 
 # 检索评测 / 阈值标定 / 澄清判据校验
 python evals/vector_db/run_eval.py --split heading

@@ -92,7 +92,26 @@ nodes:
           #    需要 qa_node 独立启动（不带向量库）时，把下面这行注释掉即可 ——
           #    此时自动创建本地 vector_store 实例（单进程 demo 用）。
           vector_store_url: "http://127.0.0.1:8102"
+      generator:
+        entry: plugins.qa.generator:GeneratorPlugin
+        config:
+          # extractive：零依赖、可复现（评测与冒烟口径）
+          # 接 LLM 时改为 auto 并配置 llm 段（OpenAI 兼容 /chat/completions）
+          mode: extractive
+          # mode: auto
+          # llm:
+          #   base_url: "https://api.example.com/v1"
+          #   api_key: "sk-..."
+          #   model: "gpt-4o-mini"
+          max_evidence: 3
+          max_sentences: 3
       fusion_qa:
         entry: plugins.qa.fusion:FusionQaPlugin
         config:
           top_k: 3
+          # 拒答阈值：evals/vector_db/calibrate.py 标定值（heading 分块口径）。
+          # 换 embedding / 改打分权重后必须重标定（vector_db 交接文档 §3.4）。
+          tau: 0.185
+          # 多进程部署时跨节点依赖写地址（qa_node 的 fusion_qa 调 8102/8103）：
+          # retriever_url: "http://127.0.0.1:8104"
+          # kg_query_url: "http://127.0.0.1:8103"
