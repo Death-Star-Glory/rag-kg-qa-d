@@ -2,13 +2,15 @@
 
 基于 RAG 与知识图谱融合的高校智能问答系统 — **课程设计仓库**。
 
-## 本次交付：插件基座 + KG API + RAG/KG 融合
+## 本次交付：插件基座 + KG API + RAG/KG 融合 + 三态问答（qa 组）
 
 正式开发入口见 **[`campus-qa-system/`](campus-qa-system/)**：
 
 - 插件契约 / 注册表 / 配置驱动 / JSON-RPC 节点
 - 知识图谱：`kg_builder` 规则建图、`kg_query` 子图查询
 - 问答融合：`rag_retriever` + `fusion_qa`（chunk 证据 + 图谱三元组 + 溯源）
+- qa 组（2026-10-12）：三态判定（作答/澄清/拒答）+ 生成（LLM 优先/抽取式兜底）+ 溯源，
+  评测 40 题：准确率 92.6%、拒答正确率 100%、幻觉 0（[`docs/qa交接文档.md`](campus-qa-system/docs/qa交接文档.md)）
 - Gateway REST：`/documents/*` `/kg/*` `/qa/ask`
 - 交接文档：[`campus-qa-system/docs/交接文档.md`](campus-qa-system/docs/交接文档.md)
 
@@ -16,8 +18,10 @@
 cd campus-qa-system
 pip install -r requirements.txt
 python smoke_base.py
+python smoke_qa.py        # qa 三态冒烟
 python smoke_fusion.py
 python smoke_api.py
+python evals/project1/run_eval.py   # 项目一评测
 python -m gateway.app --port 8300
 ```
 

@@ -15,7 +15,7 @@ if str(PROJECT_ROOT) not in sys.path:
 from base.sdk.registry import PluginRegistry
 from plugins.file_mgmt import DocParserPlugin, FileStorePlugin
 from plugins.kg import KgBuilderPlugin, KgQueryPlugin
-from plugins.qa import FusionQaPlugin, RagRetrieverPlugin
+from plugins.qa import FusionQaPlugin, GeneratorPlugin, RagRetrieverPlugin
 
 try:
     from fastapi import FastAPI, HTTPException
@@ -68,6 +68,7 @@ def build_demo_registry(data_dir: Optional[Path] = None) -> PluginRegistry:
     registry.register("kg_builder", KgBuilderPlugin)
     registry.register("kg_query", KgQueryPlugin)
     registry.register("rag_retriever", RagRetrieverPlugin)
+    registry.register("generator", GeneratorPlugin)
     registry.register("fusion_qa", FusionQaPlugin)
 
     file_store = registry.create(
@@ -99,9 +100,24 @@ def build_demo_registry(data_dir: Optional[Path] = None) -> PluginRegistry:
         "rag_retriever",
         {"file_store": file_store, "doc_parser": doc_parser},
     )
+    generator = registry.create(
+        "generator",
+        {
+            # 默认 extractive（零依赖、可复现）；接 LLM 时在此配置：
+            # "mode": "auto",
+            # "llm": {"base_url": "...", "api_key": "...", "model": "..."},
+            "mode": "extractive",
+        },
+    )
     registry.create(
         "fusion_qa",
-        {"retriever": retriever, "kg_query": kg_query, "top_k": 3},
+        {
+            "retriever": retriever,
+            "kg_query": kg_query,
+            "generator": generator,
+            "top_k": 3,
+            "tau": 0.185,  # evals/vector_db/calibrate.py 标定值
+        },
     )
     return registry
 
